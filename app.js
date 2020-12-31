@@ -25,6 +25,7 @@ fs.readdir( dir , (err, all) => {
       aCuts.push( ( all[i].replace( '_.JPG', '' ).trim() ) );
       // console.log( all[i] );
     } else if ( all[i].indexOf('.ARW') > 0 ) {
+    // } else if ( all[i].indexOf('.CR2') > 0 ) {
       // console.log( all[i] );
       arws.push( all[i] );
     }
@@ -38,14 +39,14 @@ fs.readdir( dir , (err, all) => {
   for( i in arws ) {
     // arws[i] = arws[i].replace('.ARW', '').trim()
     for( j in aCuts ) {
-      console.log(
-        '\narw \t\t: %s\naCuts index \t: %d'
-        , arws[i]
-        , j );
+      // console.log(
+      //   '\narw \t\t: %s\naCuts index \t: %d'
+      //   , arws[i]
+      //   , j );
       if( String(arws[i]).indexOf( String(aCuts[j]) ) >= 0 ) {
-        console.log(
-          String(arws[i]).indexOf( String(aCuts[j]) )
-        );
+        // console.log(
+        //   String(arws[i]).indexOf( String(aCuts[j]) )
+        // );
         arws.splice(i, 1);
         // aCuts.splice( j, 1 );
       }
@@ -59,7 +60,7 @@ fs.readdir( dir , (err, all) => {
 
   for( i in arws ) {
     fs.rename( arws[i], './toDelete/' + arws[i], (err) => {
-      console.log( err );
+      if( err ) console.log( err );
       return;
     })
   }
